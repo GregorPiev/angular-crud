@@ -1,0 +1,81 @@
+<div class="card">
+  <div class="card-header">
+    <h1>Edit product</h1>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="form" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">Product Name*</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="ProductName"
+          #ProductName
+        />
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          form.get('ProductName').hasError('required') &&
+          form.get('ProductName').touched
+        "
+      >
+        Product Name is required.
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">Product Description*</label>
+        <textarea
+          class="form-control"
+          rows="3"
+          cols="8"
+          formControlName="ProductDescription"
+          #ProductDescription
+        ></textarea>
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          form.get('ProductDescription').hasError('required') &&
+          form.get('ProductDescription').touched
+        "
+      >
+        Product Name is required.
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4">Product Price*</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="ProductPrice"
+          #ProductPrice
+        />
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          form.get('ProductPrice').hasError('required') &&
+          form.get('ProductPrice').touched
+        "
+      >
+        Product Name is required.
+      </div>
+
+      <div class="form-group text-right">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          (click)="update()"
+          [disabled]="form.invalid"
+        >
+          Update Product
+        </button>
+      </div>
+    </form>
+    <p class="text-left">
+      <a [routerLink]="['/']">Home</a>&nbsp;&nbsp;
+      <a [routerLink]="['/products']">Products</a>
+    </p>
+  </div>
+</div>

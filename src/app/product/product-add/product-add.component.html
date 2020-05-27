@@ -1,0 +1,76 @@
+<div class="card">
+  <div class="card-header">Adding New Product</div>
+  <div class="card-body">
+    <form [formGroup]="form" novalidate (ngSubmit)="addProduct()">
+      <div class="form-group">
+        <label class="col-md-4">Product Name*</label>
+        <input
+          #ProductName
+          formControlName="ProductName"
+          type="text"
+          class="form-control"
+        />
+      </div>
+      <div
+        *ngIf="
+          form.get('ProductName').hasError('required') &&
+          form.get('ProductName').touched
+        "
+        class="alert alert-danger"
+      >
+        Product Name is required.
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Description*</label>
+        <textarea
+          #ProductDescription
+          formControlName="ProductDescription"
+          class="form-control"
+          rows="7"
+          cols="5"
+        ></textarea>
+      </div>
+      <div
+        *ngIf="
+          form.get('ProductDescription').hasError('required') &&
+          form.get('ProductDescription')?.touched
+        "
+        class="alert alert-danger"
+      >
+        Product Description is required.
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Product price*</label>
+        <input
+          type="text"
+          #ProductPrice
+          formControlName="ProductPrice"
+          class="form-control"
+        />
+      </div>
+      <div
+        *ngIf="
+          form.get('ProductPrice').hasError('required') &&
+          form.get('ProductPrice')?.touched
+        "
+        class="alert alert-danger"
+      >
+        Product Price is required.
+      </div>
+      <div class="form-group text-right">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="form.pristine && form.invalid"
+        >
+          Create Product
+        </button>
+      </div>
+    </form>
+    <p *ngIf="errorMessage">{{ errorMessage }}</p>
+    <p class="text-left">
+      <a [routerLink]="['/']">Home</a>&nbsp;&nbsp;
+      <a [routerLink]="['/products']">Products</a>
+    </p>
+  </div>
+</div>
